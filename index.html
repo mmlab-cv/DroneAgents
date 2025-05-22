@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Drone Agents: learning to fly to learn how to see.">
+  <meta name="keywords" content="Drone Agents, Reinforcement Learning, Unreal Engine">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drone Agents 🤖</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-PMXG52KP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'GTM-PMXG52KP');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="http://mmlabsites.disi.unitn.it/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://github.com/mmlab-cv/">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Drone Agents 🤖: learning to fly to learn how to see</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=s9d0TmgAAAAJ&hl=en">Daniele Della Pietra</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/mmlab-cv/">Karthik Govindarajan</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.it/citations?hl=en&user=Qk5Ni_IAAAAJ">Fabrizio Granelli</a><sup>1,3</sup>,
+            <span class="author-block">
+              <a href="https://scholar.google.it/citations?user=KF9OqSMAAAAJ&hl=en">Andrea Rosani</a><sup>2</sup>,
+            <span class="author-block">
+              <a href="https://scholar.google.it/citations?user=r8BzAfcAAAAJ&hl=en">Nicola Garau</a><sup>1,3</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Trento,</span>
+            <span class="author-block"><sup>2</sup>Free University of Bozen-Bolzano,</span>
+            <span class="author-block"><sup>3</sup>CNIT</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="static/assets/DroneAgents.pdf"
+                   class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/mmlab-cv/DroneAgents"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code and Data</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/drone_agents_teaser.png"
+            alt="Teaser image."/>
+      <h2 class="subtitle has-text-centered">
+        <p>Overview of our method. We (a) design a realistic drone agent inside Unreal Engine 5 (UE5), with physically accurate movement capabilities, rgb, depth, and segmentation cameras. We then (b) define a set of possible actions, observations, and rewards for each agent in the environment, and (c) train the drone agents to complete a task (e.g., cover an area with high pedestrian density). After training, (d) the learned policy can be used by every agent to navigate the environment in real-time. (e) Inside UE5, each drone now can be used as an automatic data collector, that can create datasets in real-time. (f) The collected data can be used for multiple purposes, such as training or fine-tuning a pedestrian detector. (g) At inference time, we show how the collected data can be used to improve the generalization over both real and synthetic data.</p>
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Humans learn to navigate and interact with their surroundings through their senses, particularly vision. Ego-vision has lately become a significant focus in computer vision, enabling neural networks to learn from first-person data effectively, as we humans do. Supervised or self-supervised learning of depth, object location, and segmentation maps through deep networks has shown considerable success in recent years.</p>
+
+          <p>On the other hand, reinforcement learning (RL) has been focusing on learning from different kinds of sensing data, such as rays, collisions, distances, and other types of observations. In this paper, we merge the two approaches, providing a complete pipeline to train reinforcement learning agents inside virtual environments, only relying on vision, eliminating the need for traditional RL observations.</p>
+
+          <p>We demonstrate that visual stimuli, if encoded by a carefully designed vision encoder, can provide informative observations, thus replacing ray-based approaches and drastically simplifying the reward shaping typical of classical RL. Our method is fully implemented inside Unreal Engine 5, from the real-time inference of visual features to the online training of the agents' behavior using the Proximal Policy Optimization (PPO) algorithm.</p>
+
+          <p>To the best of our knowledge, this is the first in-engine solution targeting video games and simulation, enabling game developers to easily train vision-based RL agents without writing a single line of code.</p>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <!-- Training. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Drone Agents</h2>
+          <img src="./static/images/drone_agents.png"
+                alt="Architecture."/>
+                <p>Examples of our Drone Agents capturing setup. Each drone roams the city, following groups of pedestrians with a PTZ camera that can capture in multiple kinds of modalities (RGB, depth, segmentation, BBOX) and from multiple dynamically changing viewpoints.</p>
+          </h2>
+        </div>
+      </div>
+      <!--/ Training. -->
+    </div>
+
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <!-- Training. -->
+          <div class="column">
+            <div class="content">
+              <h2 class="title is-3">Quantitative Results</h2>
+              <img src="./static/images/quantitative_drone_agents.png"
+                    alt="Blueprints."/>
+                    <p>Performance of the two YOLOv8 models (pre-trained and fine-tuned) evaluated on detection (under the column ``BBOX'') and segmentation tasks (under the column ``MASK''), separately for the real domain (section ``TEST COCO'') and synthetic domain (section ``TEST SYNTH'').</p>
+
+              </h2>
+            </div>
+          </div>
+          <!--/ Training. -->
+        </div>
+
+
+        <section class="section">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered">
+              <!-- Training. -->
+              <div class="column">
+                <div class="content">
+                  <h2 class="title is-3">Qualitative Results</h2>
+                  <img src="./static/images/qualitative_drone_agents.png"
+                        alt="Visual Results."/>
+                        <p>Qualitative comparison of YOLOv8 models. Left columns (a,c,e,g): Pre-trained baseline. Right columns (b,d,f,h): Fine-tuned model. Fine-tuning notably improves detection and segmentation of pedestrians from aerial views (low-resolution, crowded, and top-down perspectives).</p>
+
+                  </h2>
+                </div>
+              </div>
+              <!--/ Training. -->
+            </div>
+
+    <!-- Related Links. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Here you can find some related links.
+          </p>
+          <p>
+            <a href="https://dev.epicgames.com/community/learning/courses/kRm/unreal-engine-learning-agents-5-4/4JPj/unreal-engine-learning-agents-intro-5-4">Unreal Engine's Learning Agents</a> allows us to setup the training environment and render all the scenes.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Related Links. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
